@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Agile is about Values and Principles
+          Agile is about Values and Principles.
         </a>
       </header>
     </div>
