@@ -25,13 +25,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Change to cise_ass1a_worksheet2 directory
-        run: cd cise_ass1a_worksheet2
-
       - name: Install dependencies
-        run: |
-          cd cise_ass1a_worksheet2-frontend
-          npm install
+        run:  npm install
 
       - name: Run the tests
         run: |
@@ -39,6 +34,4 @@ jobs:
           npm test
 
       - name: Build
-        run: |
-          cd cise_ass1a_worksheet2-frontend
-          npm run build
+        run: npm run build
