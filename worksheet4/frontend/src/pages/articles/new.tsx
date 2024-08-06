@@ -4,21 +4,23 @@ import axios from 'axios';
 
 const NewDiscussion = () => {
   const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [author, setAuthor] = useState('');
-  const [description, setDescription] = useState('');
-  const [publishedDate, setPublishedDate] = useState<Date | undefined>(undefined);
-  const [publisher, setPublisher] = useState('');
+  const [authors, setAuthors] = useState('');
+  const [source, setSource] = useState('');
+  const [pubyear, setPubyear] = useState<number | undefined>(undefined);
+  const [doi, setDoi] = useState('');
+  const [claim, setClaim] = useState('');
+  const [evidence, setEvidence] = useState('');
 
   const submitNewArticle = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const newArticle = {
       title,
-      content,
-      author,
-      description,
-      published_date: publishedDate,
-      publisher,
+      authors: authors.split(',').map(author => author.trim()),
+      source,
+      pubyear,
+      doi,
+      claim,
+      evidence,
     };
 
     try {
@@ -43,48 +45,59 @@ const NewDiscussion = () => {
           value={title}
           onChange={(event) => setTitle(event.target.value)}
         />
-        <label htmlFor="content">Content:</label>
-        <textarea
-          className={formStyles.formItem}
-          name="content"
-          id="content"
-          value={content}
-          onChange={(event) => setContent(event.target.value)}
-        />
-        <label htmlFor="author">Author:</label>
+        <label htmlFor="authors">Authors:</label>
         <input
           className={formStyles.formItem}
           type="text"
-          name="author"
-          id="author"
-          value={author}
-          onChange={(event) => setAuthor(event.target.value)}
+          name="authors"
+          id="authors"
+          value={authors}
+          onChange={(event) => setAuthors(event.target.value)}
         />
-        <label htmlFor="description">Description:</label>
-        <textarea
-          className={formStyles.formItem}
-          name="description"
-          id="description"
-          value={description}
-          onChange={(event) => setDescription(event.target.value)}
-        />
-        <label htmlFor="published_date">Published Date:</label>
-        <input
-          className={formStyles.formItem}
-          type="date"
-          name="published_date"
-          id="published_date"
-          value={publishedDate ? publishedDate.toISOString().split('T')[0] : ''}
-          onChange={(event) => setPublishedDate(event.target.value ? new Date(event.target.value) : undefined)}
-        />
-        <label htmlFor="publisher">Publisher:</label>
+        <label htmlFor="source">Source:</label>
         <input
           className={formStyles.formItem}
           type="text"
-          name="publisher"
-          id="publisher"
-          value={publisher}
-          onChange={(event) => setPublisher(event.target.value)}
+          name="source"
+          id="source"
+          value={source}
+          onChange={(event) => setSource(event.target.value)}
+        />
+        <label htmlFor="pubyear">Publication Year:</label>
+        <input
+          className={formStyles.formItem}
+          type="number"
+          name="pubyear"
+          id="pubyear"
+          value={pubyear}
+          onChange={(event) => setPubyear(parseInt(event.target.value))}
+        />
+        <label htmlFor="doi">DOI:</label>
+        <input
+          className={formStyles.formItem}
+          type="text"
+          name="doi"
+          id="doi"
+          value={doi}
+          onChange={(event) => setDoi(event.target.value)}
+        />
+        <label htmlFor="claim">Claim:</label>
+        <input
+          className={formStyles.formItem}
+          type="text"
+          name="claim"
+          id="claim"
+          value={claim}
+          onChange={(event) => setClaim(event.target.value)}
+        />
+        <label htmlFor="evidence">Evidence:</label>
+        <input
+          className={formStyles.formItem}
+          type="text"
+          name="evidence"
+          id="evidence"
+          value={evidence}
+          onChange={(event) => setEvidence(event.target.value)}
         />
         <button className={formStyles.formItem} type="submit">
           Submit
